@@ -17,18 +17,18 @@ export class LocalidadController {
     return this.localidadService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.localidadService.findOne(+id);
+  @Get(':term')
+  findOne(@Param('term') term: string) {
+    return this.localidadService.findOne(term);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLocalidadDto: UpdateLocalidadDto) {
-    return this.localidadService.update(+id, updateLocalidadDto);
+  @Patch(':term')
+  update(@Param('term') term: string, @Body() updateLocalidadDto: UpdateLocalidadDto) {
+    return this.localidadService.update(term, updateLocalidadDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.localidadService.remove(+id);
+  @Delete(':term')
+  remove(@Param('term') term: string) {
+    return this.localidadService.delete(term);
   }
 }
