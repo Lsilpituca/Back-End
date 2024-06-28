@@ -28,7 +28,7 @@ export class LocalidadController {
   }
 
   @Delete(':term')
-  remove(@Param('term') term: string) {
+  delete(@Param('term') term: string) {
     return this.localidadService.delete(term);
   }
 }

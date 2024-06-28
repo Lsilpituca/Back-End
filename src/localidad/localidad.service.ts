@@ -18,11 +18,11 @@ export class LocalidadService {
     private readonly localidadModel: Model<Localidad>,
   ) {}
 
-  async create(CreateLocalidadDto: CreateLocalidadDto) {
+  async create(createLocalidadDto: CreateLocalidadDto) {
     try {
-      CreateLocalidadDto.nombre = CreateLocalidadDto.nombre.toLocaleLowerCase();
+      createLocalidadDto.nombre = createLocalidadDto.nombre.toLocaleLowerCase();
 
-      const localidad = await this.localidadModel.create(CreateLocalidadDto);
+      const localidad = await this.localidadModel.create(createLocalidadDto);
 
       return localidad;
     } catch (error) {
