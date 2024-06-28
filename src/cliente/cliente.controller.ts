@@ -5,7 +5,9 @@ import { UpdateClienteDto } from './dto/update-cliente.dto';
 
 @Controller('cliente')
 export class ClienteController {
-  constructor(private readonly clienteService: ClienteService) {}
+  constructor(
+    private readonly clienteService: ClienteService
+  ) {}
 
   @Post()
   create(@Body() createClienteDto: CreateClienteDto) {
@@ -17,18 +19,18 @@ export class ClienteController {
     return this.clienteService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.clienteService.findOne(+id);
+  @Get(':dni')
+  findOne(@Param('dni') dni: string) {
+    return this.clienteService.findOne(dni);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClienteDto: UpdateClienteDto) {
-    return this.clienteService.update(+id, updateClienteDto);
+  @Patch(':dni')
+  update(@Param('dni') dni: string, @Body() updateClienteDto: UpdateClienteDto) {
+    return this.clienteService.update(dni, updateClienteDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.clienteService.remove(+id);
+  @Delete(':dni')
+  remove(@Param('dni') dni: string) {
+    return this.clienteService.delete(dni);
   }
 }

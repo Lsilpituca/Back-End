@@ -51,3 +51,5 @@ export class Cliente extends Document {
 
 }
 
+export const ClienteSchema = SchemaFactory.createForClass(Cliente);
+
