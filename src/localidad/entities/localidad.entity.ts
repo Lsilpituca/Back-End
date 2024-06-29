@@ -4,17 +4,17 @@ import { Document } from 'mongoose';
 @Schema()
 export class Localidad extends Document {
   @Prop({
-    unique: true,
     required: true,
-    type: String,
+    index: true,
+    type: String
   })
-  nombre: string;
+  nombre: String;
 
   @Prop({
     unique: true,
     required: true,
+    index: true,
     type: Number,
-    min: 0,
   })
   codigoPostal: number;
 }

@@ -43,12 +43,15 @@ export class LocalidadService {
 
   async findOne(term: string) {
     let localidad: Localidad;
-    localidad = await this.localidadModel.findOne({
-      nombre: term.toLocaleLowerCase(),
-    });
+    if(!isNaN(+term)){
+      localidad = await this.localidadModel.findOne({codigoPostal: term})
+    }
+    if (!localidad){
+      localidad = await this.localidadModel.findOne({nombre: term.toLocaleLowerCase().trim()})
+    }
 
     if (!localidad)
-      throw new NotFoundException(`Location with name: "${term}" not found`);
+      throw new NotFoundException(`Location with name or CP: "${term}" not found`);
 
     return localidad; 
   }
@@ -61,7 +64,7 @@ export class LocalidadService {
       updateLocalidad.nombre = updateLocalidad.nombre.toLocaleLowerCase();
     }
 
-    await localidad.updateOne(UpdateLocalidadDto, { new: true });
+    await localidad.updateOne(updateLocalidad, { new: true });
     return 'location updated successfully';
   }
   async delete(term: string) {
