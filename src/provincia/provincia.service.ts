@@ -20,7 +20,6 @@ export class ProvinciaService {
   async create(createProvinciaDto: CreateProvinciaDto) {
     try {
       createProvinciaDto.nombre = createProvinciaDto.nombre.toLocaleLowerCase();
-
       const provincia = await this.provinciaModel.create(createProvinciaDto);
 
       return provincia;

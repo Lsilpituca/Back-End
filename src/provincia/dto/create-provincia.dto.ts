@@ -1,4 +1,4 @@
-import {IsNotEmpty, IsString, IsNumber, IsPositive, IsOptional, IsInt, Min } from "class-validator";
+import {IsNotEmpty, IsString} from "class-validator";
 
 
 export class CreateProvinciaDto {

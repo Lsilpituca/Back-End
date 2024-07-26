@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateProvinciaDto } from './create-provincia.dto';
-import {IsNumber, IsOptional,IsString} from 'class-validator';
+import {IsOptional,IsString} from 'class-validator';
 
 export class UpdateProvinciaDto extends PartialType(CreateProvinciaDto) {
     @IsString()
