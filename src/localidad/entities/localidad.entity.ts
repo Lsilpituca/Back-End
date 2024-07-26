@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 @Schema()
 export class Localidad extends Document {
@@ -17,6 +17,14 @@ export class Localidad extends Document {
     type: Number,
   })
   codigoPostal: number;
+
+  @Prop({ 
+    type: String, 
+    ref: 'provincia', 
+    required: true 
+  })
+  nombreProvincia: String;
+
 }
 
 export const LocalidadSchema = SchemaFactory.createForClass(Localidad);

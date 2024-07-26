@@ -6,8 +6,4 @@ export class UpdateProvinciaDto extends PartialType(CreateProvinciaDto) {
     @IsString()
     @IsOptional()
     nombre?: string;
-
-    @IsNumber()
-    @IsOptional()
-    id?: number;
 }

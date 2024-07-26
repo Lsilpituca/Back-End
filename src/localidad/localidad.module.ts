@@ -3,6 +3,8 @@ import { LocalidadService } from './localidad.service';
 import { LocalidadController } from './localidad.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Localidad, LocalidadSchema } from './entities/localidad.entity';
+import { Provincia, ProvinciaSchema } from '../provincia/entities/provincia.entity';
+import { ProvinciaModule } from '../provincia/provincia.module';
 
 @Module({
   controllers: [LocalidadController],
@@ -12,8 +14,13 @@ import { Localidad, LocalidadSchema } from './entities/localidad.entity';
       {
         name: Localidad.name, 
         schema: LocalidadSchema, 
+      },
+      { 
+        name: Provincia.name, 
+        schema: ProvinciaSchema 
       }
-    ])
+    ]),
+    ProvinciaModule,
   ]
 })
 export class LocalidadModule {}

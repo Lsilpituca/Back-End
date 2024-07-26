@@ -22,6 +22,11 @@ export class LocalidadController {
     return this.localidadService.findOne(term);
   }
 
+  @Get(':term')
+  find(@Param('term') term:string){
+    return this.localidadService.find(term);
+  }
+
   @Patch(':term')
   update(@Param('term') term: string, @Body() updateLocalidadDto:UpdateLocalidadDto) {
     return this.localidadService.update(term, updateLocalidadDto);

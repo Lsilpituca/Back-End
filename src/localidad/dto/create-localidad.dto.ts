@@ -1,4 +1,4 @@
-import {IsNotEmpty, IsString, IsNumber} from "class-validator";
+import {IsNotEmpty, IsString, IsNumber, IsMongoId} from "class-validator";
 
 
 export class CreateLocalidadDto {
@@ -10,4 +10,8 @@ export class CreateLocalidadDto {
     @IsNotEmpty()
     @IsNumber()
     codigoPostal :number;
+
+    @IsNotEmpty()
+    @IsString()
+    nombreProvincia: string;
 }

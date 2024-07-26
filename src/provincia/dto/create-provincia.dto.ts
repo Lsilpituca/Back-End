@@ -6,8 +6,4 @@ export class CreateProvinciaDto {
     @IsString()
     nombre : string;
 
-    @IsNotEmpty()
-    @IsNumber()
-    id: number;
-
 }

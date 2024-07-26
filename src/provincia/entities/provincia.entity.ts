@@ -9,14 +9,6 @@ export class Provincia extends Document {
     type: String,
   })
   nombre: string;
-
-  @Prop({
-    unique: true,
-    required: true,
-    type: Number,
-    min: 0,
-  })
-  id: number;
 }
 
 export const ProvinciaSchema = SchemaFactory.createForClass(Provincia);
