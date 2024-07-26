@@ -23,7 +23,7 @@ export class LocalidadController {
   }
 
   @Patch(':term')
-  update(@Param('term') term: string, @Body() updateLocalidadDto: UpdateLocalidadDto) {
+  update(@Param('term') term: string, @Body() updateLocalidadDto:UpdateLocalidadDto) {
     return this.localidadService.update(term, updateLocalidadDto);
   }
 

@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { LocalidadModule } from './localidad/localidad.module';
 import { ProvinciaModule } from './provincia/provincia.module';
 import { ClienteModule } from './cliente/cliente.module';
+import { TipoProduModule } from './tipo-produ/tipo-produ.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { ClienteModule } from './cliente/cliente.module';
     MongooseModule.forRoot('mongodb://localhost:27017/tiendaVirtual'),
     LocalidadModule,
     ProvinciaModule,
-    ClienteModule
+    ClienteModule,
+    TipoProduModule
   ],
   controllers: [AppController],
   providers: [AppService],
