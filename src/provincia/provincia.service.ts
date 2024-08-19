@@ -59,7 +59,7 @@ export class ProvinciaService {
       updateProvincia.nombre = updateProvincia.nombre.toLocaleLowerCase();
     }
 
-    await provincia.updateOne(UpdateProvinciaDto, { new: true });
+    await provincia.updateOne(updateProvincia, { new: true });
     return 'province updated successfully';
   }
   async delete(term: string) {

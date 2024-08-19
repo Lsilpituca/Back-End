@@ -5,11 +5,5 @@ export class CreateTipoProduDto {
     @IsNotEmpty()
     @IsString()
     nombre: string;
-
-    
-    @IsNotEmpty()
-    @IsNumber()
-    id: number;
-
     
 }

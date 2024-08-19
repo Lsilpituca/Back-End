@@ -9,16 +9,7 @@ export class TipoProdu extends Document {
     type: String,
   })
   nombre: string;
-  
-  
-  @Prop({
-    unique: true,
-    required: true,
-    type: Number,
-  })
-  id: number;
 
-  
 }
 
 export const TipoProduSchema = SchemaFactory.createForClass(TipoProdu);

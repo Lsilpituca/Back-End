@@ -14,6 +14,13 @@ export class Products extends Document {
   })
   nombre: string;
 
+  @Prop({
+    index: true,
+    required: true,
+    type: String
+  })
+  nombreTipoP: string;
+
   // El campo 'precio' es requerido, su tipo es Number y debe ser mayor o igual a 0.
   @Prop({
     required: true,

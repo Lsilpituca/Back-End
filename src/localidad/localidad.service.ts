@@ -9,7 +9,7 @@ import { UpdateLocalidadDto } from './dto/update-localidad.dto';
 import { Localidad } from './entities/localidad.entity';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { Provincia } from 'src/provincia/entities/provincia.entity';
+import { ProvinciaService } from 'src/provincia/provincia.service';
 
 
 @Injectable()
@@ -17,22 +17,21 @@ export class LocalidadService {
   constructor(
     @InjectModel(Localidad.name)
     private readonly localidadModel: Model<Localidad>,
-    @InjectModel(Provincia.name)
-        private readonly provinciaModel: Model<Provincia>
+    private readonly provinciaService: ProvinciaService
   ) {}
 
   async create(createLocalidadDto: CreateLocalidadDto) {
     try {
       createLocalidadDto.nombre = createLocalidadDto.nombre.toLocaleLowerCase();
 
-      const provincia = await this.provinciaModel.findOne({nombre: createLocalidadDto.nombreProvincia});
-        if (!provincia) {
-            throw new NotFoundException(`Provincia with name "${createLocalidadDto.nombreProvincia}" not found`);
-        }
+      const provincia = await this.provinciaService.findOne(createLocalidadDto.nombreProvincia);
 
       const localidad = await this.localidadModel.create(createLocalidadDto);
       return localidad;
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       if (error.code === 11000) {
         throw new BadRequestException(
           `location already exists ${JSON.stringify(error.keyValue)}`,

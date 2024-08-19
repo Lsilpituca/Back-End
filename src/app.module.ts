@@ -7,6 +7,7 @@ import { LocalidadModule } from './localidad/localidad.module';
 import { ProvinciaModule } from './provincia/provincia.module';
 import { ClienteModule } from './cliente/cliente.module';
 import { TipoProduModule } from './tipo-produ/tipo-produ.module';
+import { MetodoPagoModule } from './metodo-pago/metodo-pago.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { TipoProduModule } from './tipo-produ/tipo-produ.module';
     LocalidadModule,
     ProvinciaModule,
     ClienteModule,
-    TipoProduModule
+    TipoProduModule,
+    MetodoPagoModule
   ],
   controllers: [AppController],
   providers: [AppService],

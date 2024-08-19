@@ -1,16 +1,18 @@
 import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CreateProductsDto } from './dto/create-products.dto';
+import { UpdateProductsDto } from './dto/update-products.dto';
 import { Products } from './entities/products.entity';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { UpdateProductsDto } from './dto/update-products.dto';
+import { TipoProduService } from 'src/tipo-produ/tipo-produ.service';
 
 @Injectable()
 export class ProductsService {
     //El constructor inyecta el modelo de Mongoose productsModel que se utilizará para interactuar con la colección de productos en la base de datos.
     constructor(
         @InjectModel(Products.name)
-        private readonly productsModel: Model<Products>
+        private readonly productsModel: Model<Products>,
+        private readonly TipoProduService: TipoProduService
     ) {}
 
     // Método para crear un nuevo producto
@@ -19,15 +21,21 @@ export class ProductsService {
             // Convertir el nombre a minúsculas antes de crear el producto
             createProductsDto.nombre = createProductsDto.nombre.toLocaleLowerCase();
             
+            const tipoProdu = await this.TipoProduService.findOne(createProductsDto.nombreTipoP);
             // Crear el producto en la base de datos
             const product = await this.productsModel.create(createProductsDto);
             
             return product; // Devolver el producto creado
         } catch (error) {
             // Manejar errores específicos como duplicados (clave única)
+            if (error instanceof NotFoundException) {
+                // Si es una NotFoundException, volver a lanzar el error
+                throw error;
+            }
             if (error.code === 11000) {
                 throw new BadRequestException(`Product already exists ${JSON.stringify(error.keyValue)}`);
-            } else {
+            }
+            else {
                 console.log(error); // Log de otros errores para depuración
                 throw new InternalServerErrorException(`Can't create product`);
             }
@@ -72,5 +80,6 @@ export class ProductsService {
         
         // Eliminar el producto de la base de datos
         await product.deleteOne();
+        return 'product deleted successfully'
     }
 }

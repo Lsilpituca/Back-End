@@ -7,6 +7,8 @@ import { Provincia, ProvinciaSchema } from './entities/provincia.entity';
 @Module({
   controllers: [ProvinciaController],
   providers: [ProvinciaService],
+  exports:[ProvinciaService],
+
   imports: [
     MongooseModule.forFeature([
       {

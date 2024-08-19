@@ -8,6 +8,10 @@ export class CreateProductsDto {
   @IsString()
   nombre: string;
 
+  @IsNotEmpty()
+  @IsString()
+  nombreTipoP: string;
+
   // El precio del producto es obligatorio, debe ser un número y debe ser positivo.
   @IsNotEmpty()
   @IsNumber()

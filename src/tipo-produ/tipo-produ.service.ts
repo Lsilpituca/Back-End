@@ -14,7 +14,7 @@ import { InjectModel } from '@nestjs/mongoose';
 export class TipoProduService {
   constructor(
     @InjectModel(TipoProdu.name)
-    private readonly tipoProduModel: Model<TipoProdu>,
+    private readonly tipoProduModel: Model<TipoProdu>
   ) {}
 
   async create(createTipoProduDto: CreateTipoProduDto) {
@@ -42,17 +42,10 @@ export class TipoProduService {
 
   async findOne(term: string) {
     let tipoProdu: TipoProdu;
-    if(!isNaN(+term)){
-      tipoProdu = await this.tipoProduModel.findOne({id: term})
-    }
-    if (!tipoProdu){
-      tipoProdu = await this.tipoProduModel.findOne({nombre: term.toLocaleLowerCase().trim()})
-    }
 
-    if (!tipoProdu)
-      throw new NotFoundException(`tipe product with name or CP: "${term}" not found`);
-
-    return tipoProdu; 
+    tipoProdu = await this.tipoProduModel.findOne({nombre: term.toLocaleLowerCase().trim()})
+    if (!tipoProdu) throw new NotFoundException(`tipo producto with name or CP: "${term}" not found`);
+    else return tipoProdu; 
   }
 
  
@@ -64,11 +57,12 @@ export class TipoProduService {
     }
 
     await tipoProdu.updateOne(updateTipoProduDto, { new: true });
-    return 'tipe product updated successfully';
+    return 'tipo producto updated successfully';
   }
   async delete(term: string) {
     const tipoProdu = await this.findOne(term);
 
     await tipoProdu.deleteOne();
+    return 'tipo producto deleted successfully';
   }
 }

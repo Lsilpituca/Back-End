@@ -3,6 +3,8 @@ import { ProductsController } from './products.controller';
 import { ProductsService } from './products.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Products, ProductsSchema } from './entities/products.entity';
+import { TipoProduModule } from 'src/tipo-produ/tipo-produ.module';
+import { TipoProdu, TipoProduSchema } from 'src/tipo-produ/entities/tipo-produ.entity';
 
 // El decorador @Module define un módulo de NestJS.
 @Module({
@@ -19,8 +21,13 @@ import { Products, ProductsSchema } from './entities/products.entity';
       {
         name: Products.name, // Nombre del modelo de Mongoose.
         schema: ProductsSchema, // Esquema de Mongoose para el modelo de productos.
+      },
+      {
+        name: TipoProdu.name, 
+        schema: TipoProduSchema, 
       }
-    ])
+    ]),
+    TipoProduModule
   ]
 })
 // Exporta la clase ProductsModule como un módulo de NestJS.

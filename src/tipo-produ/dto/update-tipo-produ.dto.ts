@@ -7,10 +7,5 @@ export class UpdateTipoProduDto extends PartialType(CreateTipoProduDto) {
     @IsString()
     @IsOptional()
     nombre?: string;
-
-    @IsOptional()
-    @IsNumber()
-    id?: number;
-
-    
+  
 }

@@ -7,6 +7,7 @@ import { TipoProdu, TipoProduSchema } from './entities/tipo-produ.entity';
 @Module({
   controllers: [TipoProduController],
   providers: [TipoProduService],
+  exports: [TipoProduService],
 
   imports: [
     MongooseModule.forFeature([
